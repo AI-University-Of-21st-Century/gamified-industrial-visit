@@ -6,6 +6,19 @@ This is the **central hub** for our AI-guided SDLC project that combines industr
 
 ---
 
+## 🌐 Live Site
+
+**View the interactive PDF viewer:** [Gamified Industrial Visit - PDF Showcase](https://ai-university-of-21st-century.github.io/gamified-industrial-visit/)
+
+Click the link above to view the professional PDF document viewer with:
+- 📄 Full PDF viewing capabilities
+- 🔍 Zoom controls (50% - 200%)
+- ⬅️➡️ Page navigation controls
+- ⌨️ Keyboard navigation support (arrow keys)
+- 🚀 Fast, optimized rendering with PDF.js
+
+---
+
 ## Project Overview
 
 The **Gamified Industrial Visit** project aims to create an engaging, gamified experience for students and professionals attending industrial site visits. Through point systems, achievement levels, and interactive reporting, participants gain deeper insights while staying motivated throughout the visit.
