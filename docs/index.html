@@ -1,127 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PDF Screenshots Showcase</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamified Industrial Visit - PDF Viewer</title>
   <style>
-    :root {
-      --bg: #0f1115;
-      --fg: #e6e6e6;
-      --muted: #9aa0a6;
-      --card: #1a1f29;
-      --accent: #4f8cff;
-    }
-    body {
+    * {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      background: var(--bg);
-      color: var(--fg);
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+      color: #e6e6e6;
+      min-height: 100vh;
+    }
+
     header {
+      background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+      border-bottom: 2px solid #4f8cff;
+      padding: 20px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: linear-gradient(180deg, rgba(26,31,41,0.95), rgba(26,31,41,0.75));
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid #2a3240;
+      z-index: 100;
     }
-    .wrap {
-      max-width: 980px;
+
+    header .container {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 16px 20px;
+      padding: 0 20px;
     }
+
     h1 {
-      margin: 0 0 6px;
-      font-size: 1.25rem;
-      letter-spacing: 0.2px;
+      font-size: 2rem;
+      color: #4f8cff;
+      margin-bottom: 5px;
     }
-    .meta {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      padding: 24px 20px 60px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid #2a3240;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-    .card .caption {
-      padding: 10px 14px;
+
+    .subtitle {
+      color: #a0a0a0;
       font-size: 0.95rem;
-      color: var(--muted);
-      border-top: 1px solid #2a3240;
     }
-    img.page {
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #232340;
+      padding: 15px 20px;
+      border-radius: 8px;
+      border: 1px solid #3d3d5c;
+    }
+
+    .control-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    label {
+      color: #b0b0b0;
+      font-size: 0.95rem;
+      min-width: 100px;
+    }
+
+    input[type="number"],
+    select {
+      padding: 8px 12px;
+      background: #1a1a2e;
+      color: #e6e6e6;
+      border: 1px solid #4f8cff;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    input[type="number"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #7fb3ff;
+      box-shadow: 0 0 8px rgba(79, 140, 255, 0.3);
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #3d6ee0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 140, 255, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      background: #666;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .viewer-wrapper {
+      background: #0f0f1a;
+      border: 1px solid #3d3d5c;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    #pdf-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0f0f1a;
+      min-height: 600px;
+      overflow: auto;
+      max-height: 80vh;
+    }
+
+    canvas {
       display: block;
-      width: 100%;
+      margin: auto;
+      max-width: 100%;
       height: auto;
     }
-    .footer {
+
+    .page-info {
       text-align: center;
-      color: var(--muted);
-      padding: 24px 0 60px;
+      padding: 10px;
+      background: #232340;
+      color: #b0b0b0;
+      font-size: 0.9rem;
+      border-top: 1px solid #3d3d5c;
     }
-    a {
-      color: var(--accent);
-      text-decoration: none;
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      color: #4f8cff;
+      font-size: 1.1rem;
     }
-    a:hover { text-decoration: underline; }
+
+    .error {
+      background: #3a1a1a;
+      color: #ff6b6b;
+      padding: 15px 20px;
+      border-radius: 4px;
+      border-left: 4px solid #ff6b6b;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: #232340;
+      border-left: 4px solid #4f8cff;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap">
-      <h1>PDF Screenshots Showcase</h1>
-      <div class="meta">36 pages • Scroll to view • Lazy-loaded for performance</div>
+    <div class="container">
+      <h1>Gamified Industrial Visit</h1>
+      <div class="subtitle">PDF Document Viewer | Zoom, Navigate & View</div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="gallery" id="gallery"></section>
-    <div class="footer">
-      Built with GitHub Pages • Images are optimized and lazy-loaded
+  <div class="container">
+    <div class="info-box">
+      ✈ Upload your PDF file (name it <strong>document.pdf</strong>) in the docs/ folder and it will display here
     </div>
-  </main>
 
+    <div class="controls">
+      <div class="control-group">
+        <button id="prev-btn" onclick="previousPage()">⬅ Previous</button>
+        <label for="current-page">Page:</label>
+        <input type="number" id="current-page" min="1" value="1" onchange="goToPage()">
+        <span id="page-count">/ --</span>
+      </div>
+      <div class="control-group">
+        <button id="next-btn" onclick="nextPage()">Next ➜</button>
+      </div>
+      <div class="control-group">
+        <label for="zoom-select">Zoom:</label>
+        <select id="zoom-select" onchange="setZoom()">
+          <option value="50">50%</option>
+          <option value="75">75%</option>
+          <option value="100" selected>100%</option>
+          <option value="125">125%</option>
+          <option value="150">150%</option>
+          <option value="200">200%</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <button onclick="zoomIn()">🔍+</button>
+        <button onclick="zoomOut()">🔍-</button>
+      </div>
+    </div>
+
+    <div class="viewer-wrapper">
+      <div id="pdf-container">
+        <div class="loading">Loading PDF viewer...</div>
+      </div>
+      <div class="page-info">
+        <span id="load-info">Initializing PDF.js...</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
-    const TOTAL_PAGES = 36;
-    const IMAGE_DIR = "images";
-    const PREFIX = "page";
-    const EXT = "png";
+    // PDF.js worker setup
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    const pad2 = (n) => String(n).padStart(2, "0");
+    let pdfDoc = null;
+    let currentPage = 1;
+    let currentZoom = 100;
+    let pageRendering = false;
+    let pageNumPending = null;
 
-    const gallery = document.getElementById("gallery");
-    for (let i = 1; i <= TOTAL_PAGES; i++) {
-      const filename = `${PREFIX}${pad2(i)}.${EXT}`;
-      const src = `${IMAGE_DIR}/${filename}`;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const container = document.getElementById('pdf-container');
 
-      const card = document.createElement("article");
-      card.className = "card";
-
-      const img = document.createElement("img");
-      img.className = "page";
-      img.src = src;
-      img.alt = `PDF page ${i}`;
-      img.loading = "lazy";
-      img.decoding = "async";
-
-      const caption = document.createElement("div");
-      caption.className = "caption";
-      caption.textContent = `Page ${i} -- ${filename}`;
-
-      card.appendChild(img);
-      card.appendChild(caption);
-      gallery.appendChild(card);
+    // Load PDF from docs/document.pdf
+    async function loadPDF() {
+      try {
+        const response = await fetch('document.pdf');
+        if (!response.ok) {
+          throw new Error('PDF file not found. Please upload document.pdf to the docs/ folder.');
+        }
+        const arrayBuffer = await response.arrayBuffer();
+        pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+        document.getElementById('page-count').textContent = '/ ' + pdfDoc.numPages;
+        document.getElementById('current-page').max = pdfDoc.numPages;
+        renderPage(1);
+      } catch (error) {
+        container.innerHTML = `<div class="error" style="width: 100%; margin: 20px;"><strong>Error:</strong> ${error.message}</div>`;
+        console.error('PDF Error:', error);
+      }
     }
+
+    async function renderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+        return;
+      }
+
+      if (!pdfDoc) return;
+
+      if (num > pdfDoc.numPages || num < 1) return;
+
+      pageRendering = true;
+      currentPage = num;
+      document.getElementById('current-page').value = num;
+
+      try {
+        const page = await pdfDoc.getPage(num);
+        const viewport = page.getViewport({ scale: currentZoom / 100 });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        await page.render(renderContext).promise;
+        container.innerHTML = '';
+        container.appendChild(canvas);
+        document.getElementById('load-info').textContent = `Page ${num} of ${pdfDoc.numPages}`;
+
+        document.getElementById('prev-btn').disabled = num <= 1;
+        document.getElementById('next-btn').disabled = num >= pdfDoc.numPages;
+      } catch (error) {
+        console.error('Render error:', error);
+      }
+
+      pageRendering = false;
+      if (pageNumPending !== null) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < pdfDoc.numPages) {
+        renderPage(currentPage + 1);
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 1) {
+        renderPage(currentPage - 1);
+      }
+    }
+
+    function goToPage() {
+      const page = parseInt(document.getElementById('current-page').value) || 1;
+      renderPage(page);
+    }
+
+    function setZoom() {
+      currentZoom = parseInt(document.getElementById('zoom-select').value);
+      renderPage(currentPage);
+    }
+
+    function zoomIn() {
+      currentZoom = Math.min(currentZoom + 25, 300);
+      document.getElementById('zoom-select').value = currentZoom;
+      renderPage(currentPage);
+    }
+
+    function zoomOut() {
+      currentZoom = Math.max(currentZoom - 25, 50);
+      document.getElementById('zoom-select').value = currentZoom;
+      renderPage(currentPage);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextPage();
+      if (e.key === 'ArrowLeft') previousPage();
+    });
+
+    // Load PDF when page loads
+    window.addEventListener('load', loadPDF);
   </script>
 </body>
 </html>
