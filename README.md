@@ -1,5 +1,7 @@
 # Gamified Industrial Visit
 
+![Gamified Industrial Visit](docs/images/banner.svg)
+
 **Central Repository for the Gamified Industrial Visit Project**
 
 This is the **central hub** for our AI-guided SDLC project that combines industrial visit management with gamification mechanics. All project artifacts, code, documentation, and collaboration happen through this repository.

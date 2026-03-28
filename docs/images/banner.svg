@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2d44;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="200" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- Top accent bar -->
+  <rect width="900" height="4" fill="#4f8cff" rx="2"/>
+
+  <!-- Decorative circles -->
+  <circle cx="820" cy="100" r="80" fill="#4f8cff" fill-opacity="0.05"/>
+  <circle cx="820" cy="100" r="55" fill="#4f8cff" fill-opacity="0.07"/>
+
+  <!-- Game controller icon outline -->
+  <g transform="translate(60, 65)">
+    <rect x="0" y="15" width="70" height="45" rx="22" fill="none" stroke="#4f8cff" stroke-width="3"/>
+    <!-- D-pad left button -->
+    <rect x="8" y="33" width="12" height="8" rx="2" fill="#4f8cff" fill-opacity="0.7"/>
+    <!-- D-pad right button -->
+    <rect x="28" y="33" width="12" height="8" rx="2" fill="#4f8cff" fill-opacity="0.7"/>
+    <!-- D-pad up button -->
+    <rect x="15" y="26" width="8" height="12" rx="2" fill="#4f8cff" fill-opacity="0.7"/>
+    <!-- D-pad down button -->
+    <rect x="15" y="40" width="8" height="12" rx="2" fill="#4f8cff" fill-opacity="0.7"/>
+    <!-- A button -->
+    <circle cx="57" cy="34" r="5" fill="#7fb3ff" fill-opacity="0.8"/>
+    <!-- B button -->
+    <circle cx="48" cy="43" r="5" fill="#4f8cff" fill-opacity="0.8"/>
+    <!-- Grips -->
+    <ellipse cx="15" cy="60" rx="10" ry="7" fill="none" stroke="#4f8cff" stroke-width="2"/>
+    <ellipse cx="55" cy="60" rx="10" ry="7" fill="none" stroke="#4f8cff" stroke-width="2"/>
+  </g>
+
+  <!-- Factory/Industry icon -->
+  <g transform="translate(155, 65)">
+    <rect x="0" y="40" width="65" height="30" fill="none" stroke="#7fb3ff" stroke-width="2.5"/>
+    <rect x="10" y="25" width="15" height="15" fill="none" stroke="#7fb3ff" stroke-width="2.5"/>
+    <rect x="35" y="15" width="15" height="25" fill="none" stroke="#7fb3ff" stroke-width="2.5"/>
+    <!-- Chimney smoke -->
+    <path d="M17 20 Q14 12 17 8 Q20 4 17 0" fill="none" stroke="#4f8cff" stroke-width="2" opacity="0.6"/>
+    <path d="M42 10 Q39 4 42 0" fill="none" stroke="#4f8cff" stroke-width="2" opacity="0.6"/>
+    <!-- Windows -->
+    <rect x="5" y="48" width="8" height="8" rx="1" fill="#4f8cff" fill-opacity="0.5"/>
+    <rect x="20" y="48" width="8" height="8" rx="1" fill="#4f8cff" fill-opacity="0.5"/>
+    <rect x="40" y="48" width="8" height="8" rx="1" fill="#4f8cff" fill-opacity="0.5"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="270" y="90" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+        font-size="36" font-weight="700" fill="#4f8cff" letter-spacing="-0.5">
+    Gamified Industrial Visit
+  </text>
+
+  <!-- Subtitle -->
+  <text x="270" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+        font-size="16" fill="#a0a0a0" letter-spacing="0.3">
+    AI-Guided SDLC Project  •  Gamification  •  Industrial Management
+  </text>
+
+  <!-- Badges row -->
+  <g transform="translate(270, 142)">
+    <!-- Badge 1 -->
+    <rect x="0" y="0" width="90" height="24" rx="12" fill="#4f8cff" fill-opacity="0.15" stroke="#4f8cff" stroke-width="1"/>
+    <text x="45" y="16" font-family="Arial, sans-serif" font-size="11" fill="#7fb3ff" text-anchor="middle">🎮 Gamification</text>
+    <!-- Badge 2 -->
+    <rect x="100" y="0" width="80" height="24" rx="12" fill="#4f8cff" fill-opacity="0.15" stroke="#4f8cff" stroke-width="1"/>
+    <text x="140" y="16" font-family="Arial, sans-serif" font-size="11" fill="#7fb3ff" text-anchor="middle">🏭 Industry</text>
+    <!-- Badge 3 -->
+    <rect x="190" y="0" width="90" height="24" rx="12" fill="#4f8cff" fill-opacity="0.15" stroke="#4f8cff" stroke-width="1"/>
+    <text x="235" y="16" font-family="Arial, sans-serif" font-size="11" fill="#7fb3ff" text-anchor="middle">🤖 AI-Guided</text>
+    <!-- Badge 4 -->
+    <rect x="290" y="0" width="100" height="24" rx="12" fill="#4f8cff" fill-opacity="0.15" stroke="#4f8cff" stroke-width="1"/>
+    <text x="340" y="16" font-family="Arial, sans-serif" font-size="11" fill="#7fb3ff" text-anchor="middle">📊 Leaderboards</text>
+  </g>
+
+  <!-- Bottom accent bar -->
+  <rect y="196" width="900" height="4" fill="#4f8cff" rx="2"/>
+</svg>
